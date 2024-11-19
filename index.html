@@ -1,41 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat en Vivo</title>
     <style>
-        /* Estilos para asegurar que la página ocupe toda la pantalla y el chat se vea a pantalla completa */
+        /* Asegúrate de que el body y html ocupen toda la pantalla */
         html, body {
             height: 100%;
             margin: 0;
-            overflow: hidden; /* Evita el desbordamiento */
-        }
-
-        #chat-container {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            padding: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Contenedor del chat en vivo -->
-    <div id="chat-container">
-        <!-- Aquí va el script de Tawk.to -->
-        <script type="text/javascript">
-            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-            (function () {
-                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/673becdb4304e3196ae4cc05/1id11af5l';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin', '*');
-                s0.parentNode.insertBefore(s1, s0);
-            })();
-        </script>
-    </div>
+    <!-- Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/673becdb4304e3196ae4cc05/1id11af5l';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+
+            // Aquí se asegura de abrir el chat en pantalla completa cuando se carga
+            s1.onload = function() {
+                Tawk_API.onLoad = function() {
+                    Tawk_API.toggle(); // Abre el chat automáticamente
+                };
+            };
+        })();
+    </script>
+    <!-- Fin del Script de Tawk.to -->
 </body>
 </html>
