@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio Web con Chat Automático</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intercom Chat</title>
 </head>
 <body>
-    <h1>Bienvenido a Nuestro Sitio Web</h1>
-    <p>El chat debería abrirse automáticamente al cargar esta página.</p>
 
-    <!-- Script del chat Kommo -->
-    <script>
-        (function(a, m, o, c, r, m) {
-            a[m] = {
-                id: "1027937",
-                hash: "484c3e4db5c7f50b53ccb993dba271ebfa28e2d7c929bd36051d4d92d4e2c821",
-                locale: "es",
-                setMeta: function(p) {
-                    this.params = (this.params || []).concat([p]);
-                }
-            };
-            a[o] = a[o] || function() {
-                (a[o].q = a[o].q || []).push(arguments);
-            };
-            var d = a.document, s = d.createElement('script');
-            s.async = true;
-            s.id = m + '_script';
-            s.src = 'https://gso.kommo.com/js/button.js';
-            d.head && d.head.appendChild(s);
-        })(window, 0, 'crmPlugin', 0, 0, 'crm_plugin');
-    </script>
+  <!-- Contenido de la página aquí (deja vacío si no deseas contenido adicional) -->
 
-    <!-- Activación y simulación de clics en el chat -->
-    <script>
-        window.addEventListener('load', function() {
-            // Reintentar activar el chat y simular clics hasta 10 veces
-            let attempts = 0;
-            const maxAttempts = 10;
+  <script>
+    // Configuración de Intercom con tu App ID
+    window.intercomSettings = {
+      api_base: "https://api-iam.intercom.io",
+      app_id: "nh7804n0",  // Reemplaza con tu propio app_id
+    };
+  </script>
 
-            function activateChat() {
-                attempts++;
-                // Intentar encontrar el icono del chat
-                const chatIcon = document.querySelector('.crm_plugin_button');
-                if (chatIcon) {
-                    chatIcon.click(); // Simular clic en el icono
-                } else if (attempts < maxAttempts) {
-                    setTimeout(activateChat, 1000); // Reintentar cada segundo
-                }
-            }
+  <script>
+    (function(){
+      var w=window;
+      var ic=w.Intercom;
+      if(typeof ic==="function"){
+        ic('reattach_activator');
+        ic('update',w.intercomSettings);
+      }else{
+        var d=document;
+        var i=function(){i.c(arguments);};
+        i.q=[];
+        i.c=function(args){i.q.push(args);};
+        w.Intercom=i;
+        var l=function(){
+          var s=d.createElement('script');
+          s.type='text/javascript';
+          s.async=true;
+          s.src='https://widget.intercom.io/widget/nh7804n0';  // Reemplaza con tu propio app_id
+          var x=d.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s,x);
+        };
+        if(document.readyState==='complete'){
+          l();
+        }else if(w.attachEvent){
+          w.attachEvent('onload',l);
+        }else{
+          w.addEventListener('load',l,false);
+        }
+      }
+    })();
+  </script>
 
-            // Activar el chat directamente después de cargar
-            setTimeout(activateChat, 1000);
-        });
-    </script>
+  <!-- Código para abrir el chat automáticamente en pantalla completa -->
+  <script>
+    window.addEventListener('load', function() {
+      // Espera que se cargue el script de Intercom y luego abre el chat
+      window.Intercom('show');
+    });
+  </script>
+
 </body>
 </html>
