@@ -5,43 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat en Vivo</title>
     <style>
-        /* Hacer que el chat ocupe toda la pantalla */
-        body, html {
+        /* Asegúrate de que la página ocupe toda la pantalla */
+        html, body {
             height: 100%;
             margin: 0;
-        }
-        #tawkchat-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
+            padding: 0;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/673becdb4304e3196ae4cc05/1id11af5l';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
-<!-- Start of Tawk.to Script -->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function() {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/673becdb4304e3196ae4cc05/1id11af5l';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-
-    // Abrir el chat en pantalla completa automáticamente cuando cargue
-    window.onload = function() {
-        setTimeout(function() {
-            Tawk_API.toggle();  // Esto abre el chat automáticamente en pantalla completa
-        }, 1000);  // Ajusta el tiempo de espera si es necesario
-    };
-</script>
-<!-- End of Tawk.to Script -->
-
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                Tawk_API.toggle();  // Abre el chat si no está abierto
+                Tawk_API.maximize(); // Fuerza la maximización del chat, mostrando todos los elementos
+            }, 1000);  // Se ejecuta después de 1 segundo para asegurar que el chat cargue
+        };
+    </script>
 </body>
 </html>
