@@ -3,53 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat en Vivo</title>
+    <title>Mi Sitio Web</title>
     <style>
-        body, html {
-            height: 100%;
+        html, body {
             margin: 0;
             padding: 0;
-        }
-        .chatra-widget-container {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: 100%;
             height: 100%;
-            z-index: 9999;
+            width: 100%;
+            overflow: hidden;
         }
-        .chatra-widget-container iframe {
+        #chat-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
         }
     </style>
 </head>
 <body>
+    <!-- Contenedor para el chat -->
+    <div id="chat-container"></div>
 
-    <!-- Chatra Widget Script -->
+    <!-- Script del nuevo chat -->
     <script>
-        (function(d, w, c) {
-            w.ChatraID = 'Y6Ty39MP767JCkmCQ';
-            var s = d.createElement('script');
-            w[c] = w[c] || function() {
-                (w[c].q = w[c].q || []).push(arguments);
+        (function(a, m, o, c, r, m) {
+            a[m] = {
+                id: "1027937",
+                hash: "484c3e4db5c7f50b53ccb993dba271ebfa28e2d7c929bd36051d4d92d4e2c821",
+                locale: "es",
+                setMeta: function(p) {
+                    this.params = (this.params || []).concat([p]);
+                }
             };
+            a[o] = a[o] || function() {
+                (a[o].q = a[o].q || []).push(arguments);
+            };
+            var d = a.document,
+                s = d.createElement('script');
             s.async = true;
-            s.src = 'https://call.chatra.io/chatra.js';
-            if (d.head) d.head.appendChild(s);
-        })(document, window, 'Chatra');
-    </script>
-    <!-- /Chatra Widget Script -->
+            s.id = m + '_script';
+            s.src = 'https://gso.kommo.com/js/button.js';
+            d.head && d.head.appendChild(s);
+        })(window, 0, 'crmPlugin', 0, 0, 'crm_plugin');
 
-    <script>
+        // Asegura que el chat se abra inmediatamente al cargar
         window.onload = function() {
             setTimeout(function() {
-                if (window.Chatra) {
-                    window.Chatra('openChat');
+                if (window.crmPlugin && typeof crmPlugin === 'function') {
+                    crmPlugin('open');
                 }
-            }, 500); // Ajusta el tiempo para cuando se abrirá el chat automáticamente
+            }, 1000); // Espera un segundo para asegurarse de que el script esté cargado
         };
     </script>
-
 </body>
 </html>
