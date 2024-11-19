@@ -31,17 +31,26 @@
         })(window, 0, 'crmPlugin', 0, 0, 'crm_plugin');
     </script>
 
-    <!-- Simulación de clic automático en el icono del chat -->
+    <!-- Activación y simulación de clics en el chat -->
     <script>
-        // Esperar un breve tiempo tras cargar el chat
         window.addEventListener('load', function() {
-            setTimeout(function() {
-                // Intentar activar el clic en el icono del chat
+            // Reintentar activar el chat y simular clics hasta 10 veces
+            let attempts = 0;
+            const maxAttempts = 10;
+
+            function activateChat() {
+                attempts++;
+                // Intentar encontrar el icono del chat
                 const chatIcon = document.querySelector('.crm_plugin_button');
                 if (chatIcon) {
-                    chatIcon.click(); // Simula el clic en el icono del chat
+                    chatIcon.click(); // Simular clic en el icono
+                } else if (attempts < maxAttempts) {
+                    setTimeout(activateChat, 1000); // Reintentar cada segundo
                 }
-            }, 2000); // Espera 2 segundos antes de simular el clic
+            }
+
+            // Activar el chat directamente después de cargar
+            setTimeout(activateChat, 1000);
         });
     </script>
 </body>
