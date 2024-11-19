@@ -7,16 +7,15 @@
 </head>
 <body>
     <h1>Bienvenido a Nuestro Sitio Web</h1>
-    <p>Este sitio web está configurado para abrir un chat automáticamente al cargar.</p>
+    <p>El chat debería abrirse automáticamente al cargar esta página.</p>
 
-    <!-- Script del chat Kommo configurado para abrir automáticamente -->
+    <!-- Script del chat Kommo -->
     <script>
         (function(a, m, o, c, r, m) {
             a[m] = {
                 id: "1027937",
                 hash: "484c3e4db5c7f50b53ccb993dba271ebfa28e2d7c929bd36051d4d92d4e2c821",
                 locale: "es",
-                openOnLoad: true, // Intento de abrir automáticamente el chat
                 setMeta: function(p) {
                     this.params = (this.params || []).concat([p]);
                 }
@@ -30,6 +29,20 @@
             s.src = 'https://gso.kommo.com/js/button.js';
             d.head && d.head.appendChild(s);
         })(window, 0, 'crmPlugin', 0, 0, 'crm_plugin');
+    </script>
+
+    <!-- Simulación de clic automático en el icono del chat -->
+    <script>
+        // Esperar un breve tiempo tras cargar el chat
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Intentar activar el clic en el icono del chat
+                const chatIcon = document.querySelector('.crm_plugin_button');
+                if (chatIcon) {
+                    chatIcon.click(); // Simula el clic en el icono del chat
+                }
+            }, 2000); // Espera 2 segundos antes de simular el clic
+        });
     </script>
 </body>
 </html>
