@@ -5,37 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat en Vivo</title>
     <style>
-        /* Asegúrate de que la página ocupe toda la pantalla */
-        html, body {
+        body, html {
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+        }
+        .chatra-widget-container {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+        .chatra-widget-container iframe {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/673becdb4304e3196ae4cc05/1id11af5l';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
+
+    <!-- Chatra Widget Script -->
+    <script>
+        (function(d, w, c) {
+            w.ChatraID = 'Y6Ty39MP767JCkmCQ';
+            var s = d.createElement('script');
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            s.async = true;
+            s.src = 'https://call.chatra.io/chatra.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'Chatra');
     </script>
-    <!--End of Tawk.to Script-->
+    <!-- /Chatra Widget Script -->
 
     <script>
         window.onload = function() {
             setTimeout(function() {
-                Tawk_API.toggle();  // Abre el chat si no está abierto
-                Tawk_API.maximize(); // Fuerza la maximización del chat, mostrando todos los elementos
-            }, 1000);  // Se ejecuta después de 1 segundo para asegurar que el chat cargue
+                if (window.Chatra) {
+                    window.Chatra('openChat');
+                }
+            }, 500); // Ajusta el tiempo para cuando se abrirá el chat automáticamente
         };
     </script>
+
 </body>
 </html>
