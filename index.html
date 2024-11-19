@@ -3,35 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-        #chat-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <title>Sitio Web con Chat Automático</title>
 </head>
 <body>
-    <!-- Contenedor para el chat -->
-    <div id="chat-container"></div>
+    <h1>Bienvenido a Nuestro Sitio Web</h1>
+    <p>Este sitio web está configurado para abrir un chat automáticamente al cargar.</p>
 
-    <!-- Script del nuevo chat -->
+    <!-- Script del chat Kommo configurado para abrir automáticamente -->
     <script>
         (function(a, m, o, c, r, m) {
             a[m] = {
                 id: "1027937",
                 hash: "484c3e4db5c7f50b53ccb993dba271ebfa28e2d7c929bd36051d4d92d4e2c821",
                 locale: "es",
+                openOnLoad: true, // Intento de abrir automáticamente el chat
                 setMeta: function(p) {
                     this.params = (this.params || []).concat([p]);
                 }
@@ -39,23 +24,12 @@
             a[o] = a[o] || function() {
                 (a[o].q = a[o].q || []).push(arguments);
             };
-            var d = a.document,
-                s = d.createElement('script');
+            var d = a.document, s = d.createElement('script');
             s.async = true;
             s.id = m + '_script';
             s.src = 'https://gso.kommo.com/js/button.js';
             d.head && d.head.appendChild(s);
         })(window, 0, 'crmPlugin', 0, 0, 'crm_plugin');
-
-        // Asegura que el chat se abra automáticamente al cargar el sitio
-        window.onload = function() {
-            setTimeout(function() {
-                var chatIcon = document.querySelector('[data-qa="widget-button"]'); // Selector del icono del chat
-                if (chatIcon) {
-                    chatIcon.click(); // Simula un clic en el icono del chat
-                }
-            }, 2000); // Espera 2 segundos para asegurar que el chat esté cargado
-        };
     </script>
 </body>
 </html>
